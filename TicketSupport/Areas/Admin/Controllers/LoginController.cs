@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Drawing;
 using System.Web.Mvc;
-using System.Web.Helpers;
 using System.Linq;
 using TicketSupport.Models;
 using System.Drawing.Imaging;
@@ -9,13 +8,13 @@ using System.IO;
 
 namespace TicketSupport.Areas.Admin.Controllers
 {
-    
     public class LoginController : Controller
     {
         public ActionResult Index()
         {
             return View();
         }
+
         // Action để tạo CAPTCHA
         public ActionResult GenerateCaptcha()
         {
@@ -73,7 +72,7 @@ namespace TicketSupport.Areas.Admin.Controllers
 
                 if (user == null || !BCrypt.Net.BCrypt.Verify(password, user.password))
                 {
-                    ViewBag.Message = "Invalid username or password.";
+                    ViewBag.Message = "Tên đăng nhập hoặc mật khẩu không hợp lệ.";
                     return View();
                 }
 

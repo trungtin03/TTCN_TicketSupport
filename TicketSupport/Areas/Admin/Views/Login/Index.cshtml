@@ -1,23 +1,51 @@
 ﻿@model TicketSupport.Models.tblnguoidung
+
 @{
     Layout = null;
 }
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
-    <title>Official Signup Form Flat Responsive widget Template :: w3layouts</title>
+    <title>Đăng nhập - Ticket Support</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content="Official Signup Form Responsive, Login form web template, Flat Pricing tables, Flat Drop downs  Sign up Web Templates, Flat Web Templates, Login signup Responsive web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
-    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-    <!-- fonts -->
-    <link href="//fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800,900" rel="stylesheet">
-    <link href="//fonts.googleapis.com/css?family=Monoton" rel="stylesheet">
-    <!-- /fonts -->
-    <!-- css -->
+    <meta name="keywords" content="Login form web template, Responsive web template, Login form" />
+
+    <!-- CSS -->
     <link href="~/Public/web/css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="~/Public/web/css/style.css" rel='stylesheet' type='text/css' media="all" />
-    <!-- /css -->
+    <link href="~/Public/web/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <style>
+        .form-control {
+            margin-bottom: 15px;
+        }
+
+        #captchaImage {
+            display: block;
+            margin: 10px auto;
+            border: 1px solid #ccc;
+            padding: 5px;
+        }
+
+        .captcha-container {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .captcha-reload-button {
+            display: block;
+            margin: 10px auto;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+            .captcha-reload-button:hover {
+                background-color: #0056b3;
+            }
+    </style>
 </head>
 <body>
     <h1 class="w3ls">ĐĂNG NHẬP</h1>
@@ -36,15 +64,16 @@
                 <div class="form-control w3layouts">
                     @Html.PasswordFor(model => model.password, new { @class = "form-control lock", @placeholder = "Password", @id = "password1", @required = "required" })
                 </div>
+
                 @Html.ValidationSummary(false, "", new { @class = "text-danger", style = "color: red; text-align: center" })
 
                 <!-- CAPTCHA section -->
-                <div class="form-control w3layouts">
-                    <label for="captcha">Nhập mã CAPTCHA:</label>
-                    <input type="text" id="captcha" name="captcha" placeholder="Nhập mã CAPTCHA" required />
+                <div class="form-control w3layouts captcha-container">
+                    <label for="captcha" style="color: white;">Nhập mã CAPTCHA:</label>
+                    <input type="text" id="captcha" name="captcha" placeholder="Nhập mã CAPTCHA" required class="form-control" />
                     <br />
                     <img src="@Url.Action("GenerateCaptcha", "Login")" alt="CAPTCHA" id="captchaImage" />
-                    <button type="button" onclick="document.getElementById('captchaImage').src = '@Url.Action("GenerateCaptcha", "Login")?' + new Date().getTime();">Tải lại</button>
+                    <button type="button" class="captcha-reload-button" onclick="document.getElementById('captchaImage').src = '@Url.Action("GenerateCaptcha", "Login")?' + new Date().getTime();">Tải lại</button>
                 </div>
 
                 <input type="submit" class="register" value="Login">
